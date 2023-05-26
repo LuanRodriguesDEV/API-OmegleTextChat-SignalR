@@ -13,8 +13,7 @@ namespace Omegle.Hubs
         public override async Task OnConnectedAsync()
         {
             var connectionId = Context.ConnectionId;
-            await Clients.Caller.SendAsync("Connected", connectionId);
-            
+            await Clients.Caller.SendAsync("Connected", connectionId);  
         }
         public async Task SearchChat(string userName)
         {
@@ -59,6 +58,18 @@ namespace Omegle.Hubs
                 ChatID = message.ConnectionID,
                 Description = message.Description,
                 UserName = message.UserName,
+            };
+            await Clients.Group(message.ChatId).SendAsync("SendMessage", newMessage);
+        }
+        public async Task SendImage(MessageImageVOInput message)
+        {
+            var newMessage = new Message()
+            {
+                ChatID = message.ConnectionID,
+                Description = "",
+                UserName = message.UserName,
+                IsImage = true,
+               ImageData = message.ImageData,
             };
             await Clients.Group(message.ChatId).SendAsync("SendMessage", newMessage);
         }
