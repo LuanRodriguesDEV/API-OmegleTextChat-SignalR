@@ -2,9 +2,9 @@
 {
     public class Message
     {
-        public string ChatId { get; set; } = default!;
-
+        public string ChatID { get; set; } = default!;
         public string UserName { get; set; } = default!;
         public string Description { get; set; } = default!;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }

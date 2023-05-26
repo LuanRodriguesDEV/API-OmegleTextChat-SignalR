@@ -26,7 +26,6 @@ app.UseAuthorization();
 app.UseCors("CorsPolicy");
 
 app.MapControllers();
-app.MapHub<TextHUB>("/text");
-
+app.MapHub<TextHUB>("/TextHub");
 
 app.Run();
